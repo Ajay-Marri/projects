@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{i.title}}
+{% endblock  %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/mainpostdetails.css"%}">
+{% endblock  %}
+
+{% block content %}
+    {% if comment_form.errors %}
+        <div id="alert">
+            <h2>saving the comment failed</h2>
+            <p>please check the comment form below the post and fix your errors</p>
+            <a href="#comment-form">Fix</a>
+        </div>
+    {% endif %}
+
+    <section id="summary">
+        <h2>{{post.title}}</h2>
+        <div>
+            {% for i in post_tag%}
+                <span class="tags">{{i.caption}}</span>
+            {%endfor%}
+        </div>
+
+        <article>
+            <img src="{{post.image_name.url}}" alt="pic"/>
+            <address>By <a href="mailto:{{post.author.email}}"> {{post.author}}</a></address>
+            <div>
+                Uploaded on <time>{{ post.date|date:"d M Y" }}</time>
+            </div>
+
+            <div id="read-later">
+                <form action="{% url "read-later" %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{post.id}}" name="post_id">
+
+                    {% if saved_for_later %}
+                    <!-- Saved: Filled Bookmark -->
+                    <button type="submit" title="Remove from Saved">
+                        <i class="bi bi-bookmark-x-fill"></i>
+                    </button>
+                    {% else %}
+                    <!-- Unsaved: Outline Bookmark -->
+                    <button type="submit" title="Save for Later">
+                        <i class="bi bi-bookmark-heart-fill"></i>
+                    </button>
+                    {% endif %}
+
+                </form>
+            </div>
+            </address>
+        </article>
+    </section>
+
+    <main>
+        <p>
+           {{post.content|linebreaks}} 
+        </p>
+    </main>
+
+    <section id="comments">
+        <h2>Comments</h2>
+        <ul>
+            {% for i in comments  %}
+                <li>
+                    <h2>{{i.user_name}}</h2>
+                    <p>{{i.text|linebreaks}}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    {% comment %} <div>
+        <form id="comment-form", action="{% url 'post_details' post.slug%}" method="POST">
+            {% csrf_token %}
+            {% for i in comment_form %}
+                <div class="form-control {% if i.errors %}invalid{% endif %}">
+                    {{ i.label_tag }}
+                    {{ i }}
+                    {{ i.errors }}
+                </div>
+            {% endfor %}
+            <button type="submit">Save Comment</button>
+        </form>
+    </div> {% endcomment %}
+        
+    <div class="styled-form-container">
+        <form id="comment-form" action="{% url 'post_details' post.slug %}" method="POST">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-control {% if comment_form.user_name.errors %}invalid{% endif %}">
+                    {{ comment_form.user_name.label_tag }}
+                    {{ comment_form.user_name }}
+                    {{ comment_form.user_name.errors }}
+                </div>
+
+                <div class="form-control {% if comment_form.user_email.errors %}invalid{% endif %}">
+                    {{ comment_form.user_email.label_tag }}
+                    {{ comment_form.user_email }}
+                    {{ comment_form.user_email.errors }}
+                </div>
+            </div>
+
+            <div class="form-control {% if comment_form.text.errors %}invalid{% endif %}">
+                {{ comment_form.text.label_tag }}
+                {{ comment_form.text }}
+                {{ comment_form.text.errors }}
+            </div>
+
+            <button type="submit">Save Comment</button>
+        </form>
+    </div>
+
+
+    
+{% endblock  %}

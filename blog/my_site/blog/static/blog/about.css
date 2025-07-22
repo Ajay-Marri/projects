@@ -1,0 +1,60 @@
+/* about.css – Light Blue Theme */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#main-navigation {
+  background-color: #390281;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 120px auto 50px; /* 120px from top, 50px from bottom */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.15);
+}
+
+.about-container h1 {
+  color: #007acc;
+  border-bottom: 2px solid #b3d9ff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.about-container p {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: #444;
+}
+
+.about-container a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-container a:hover {
+  text-decoration: underline;
+}
+
+.highlight-box {
+  background-color: #e6f3ff;
+  border-left: 6px solid #3399ff;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 20px;
+    margin: 20px;
+  }
+}

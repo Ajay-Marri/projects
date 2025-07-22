@@ -1,0 +1,18 @@
+#main-navigation {
+  background-color: #390281;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.policy-container {
+  max-width: 800px;
+  margin: 120px auto 50px;
+  padding: 40px;
+  background-color: #f5faff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15);
+  color: #333;
+}
+
+.policy-container h1 {
+  color: #0056b3;
+  margin-bottom: 20px;
+}

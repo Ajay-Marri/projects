@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Terms of Use{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/terms.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="terms-container">
+  <h1>Terms of Use</h1>
+  <p>These Terms of Use govern your access to and use of our blog platform...</p>
+
+  <h3>1. Acceptance of Terms</h3>
+  <p>By accessing or using our site, you agree to be bound by these terms...</p>
+
+  <h3>2. Use License</h3>
+  <p>Permission is granted to temporarily download one copy of the materials...</p>
+
+  <!-- Add more sections as needed -->
+</div>
+{% endblock %}
